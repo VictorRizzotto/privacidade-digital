@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seus dados, suas regras · Privacidade digital</title>
+<meta name="description" content="Dicas práticas de privacidade e proteção de dados pessoais para o dia a dia: permissões de apps, localização, senhas, golpes e seus direitos pela LGPD. Projeto acadêmico de Ciência da Computação — Atitus Educação.">
+<meta name="theme-color" content="#0A0D12">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Antes de tocar em “Permitir”, pergunte: esse app precisa mesmo disso?">
+<meta property="og:description" content="Guia rápido de privacidade e dados pessoais: permissões, localização, senhas, golpes e seus direitos pela LGPD.">
+<meta property="og:url" content="https://victorrizzotto.github.io/privacidade-digital/">
+<meta property="og:image" content="https://victorrizzotto.github.io/privacidade-digital/folder/folder-feed.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0D12; --bg-2:#0E131A; --surface:#131922; --surface-2:#1A222D; --line:#222C3A; --line-2:#2E3A4B;
+  --text:#ECF1F7; --muted:#A3AFBF; --dim:#738096;
+  --accent:#B8F36B; --accent-ink:#0B1206; --accent-soft:rgba(184,243,107,.12); --accent-line:rgba(184,243,107,.35);
+  --warn:#FFB547; --warn-soft:rgba(255,181,71,.12); --warn-line:rgba(255,181,71,.45);
+  --radius:20px;
+  --maxw:1180px;
+  --font-display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.icon{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.skip{position:absolute;left:-9999px;top:12px;z-index:100;background:var(--accent);color:var(--accent-ink);padding:10px 14px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{left:12px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(10,13,18,.8);-webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:16px;text-decoration:none}
+.brand .atitus{height:32px;width:auto}
+.brand .curso{height:27px;width:auto}
+.vsep{width:1px;height:30px;background:var(--line-2);flex:none}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{font:500 14px/1 var(--font-body);color:var(--muted);text-decoration:none;padding:10px 12px;border-radius:999px;transition:color .15s,background .15s}
+.nav a:hover{color:var(--text);background:var(--surface)}
+.nav a.nav-cta{background:var(--accent);color:var(--accent-ink);font-weight:600;margin-left:8px}
+.nav a.nav-cta:hover{background:#c9f98a}
+
+/* Hero */
+.hero{position:relative;padding:76px 0 100px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 72% 40%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse 75% 70% at 72% 40%,#000 15%,transparent 72%);opacity:.6}
+.hero::after{content:"";position:absolute;z-index:-1;width:760px;height:760px;right:-200px;top:-220px;background:radial-gradient(circle,rgba(184,243,107,.15),transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 12.5px/1.2 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--accent);padding:8px 13px;border:1px solid var(--accent-line);border-radius:999px;background:var(--accent-soft)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(184,243,107,.18);flex:none}
+h1{font:800 clamp(38px,5.3vw,68px)/1.03 var(--font-display);letter-spacing:-.028em;margin:24px 0;text-wrap:balance}
+.pill-word{display:inline-block;padding:.02em .34em .07em;border-radius:.42em;background:var(--accent);color:var(--accent-ink);transform:rotate(-2.5deg);box-shadow:0 10px 30px -10px rgba(184,243,107,.55)}
+.lead{font-size:clamp(17px,1.5vw,20px);color:var(--muted);max-width:54ch;margin:0 0 34px}
+.lead strong{color:var(--text);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 var(--font-body);padding:16px 22px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn .icon{width:18px;height:18px}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{transform:translateY(-2px);background:#c9f98a}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+.btn-ghost:hover{background:var(--surface);border-color:var(--dim)}
+.hero-meta{margin:36px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;font:500 13px/1.4 var(--font-mono);color:var(--dim)}
+.hero-meta li{display:flex;align-items:center;gap:8px}
+.hero-meta .icon{width:16px;height:16px;color:var(--accent)}
+
+/* Permission demo */
+.demo{display:flex;flex-direction:column;align-items:center}
+.phone-wrap{position:relative;width:300px;max-width:100%}
+.phone{width:100%;aspect-ratio:1/2;border-radius:46px;background:#05070A;border:1px solid var(--line-2);padding:11px;box-shadow:0 50px 90px -35px rgba(0,0,0,.9),0 0 0 6px #10161F}
+.screen{position:relative;height:100%;border-radius:36px;overflow:hidden;background:linear-gradient(180deg,#1C2531,#0F151D)}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:88px;height:24px;border-radius:20px;background:#05070A;z-index:3}
+.fake-app{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding-bottom:150px;color:#DDE5EE;opacity:.5;filter:blur(.6px)}
+.torch{width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#FFD66B,#FF9F43);display:grid;place-items:center;color:#2A1A00}
+.torch .icon{width:44px;height:44px;stroke-width:1.8}
+.fake-app b{font:700 18px var(--font-display)}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.42)}
+.sheet{position:absolute;left:9px;right:9px;bottom:9px;background:#212A36;border-radius:28px;padding:20px 14px 12px;text-align:center;color:#EEF2F7;box-shadow:0 -10px 40px rgba(0,0,0,.35)}
+.sheet-ico{width:40px;height:40px;margin:0 auto 10px;border-radius:50%;background:var(--warn-soft);color:var(--warn);display:grid;place-items:center}
+.sheet-ico .icon{width:20px;height:20px}
+.sheet p{font:500 14.5px/1.4 var(--font-body);margin:0 6px 14px}
+.sheet button{display:block;width:100%;font:600 14px/1.2 var(--font-body);padding:13px 10px;margin-top:6px;border-radius:14px;border:0;background:#2C3644;color:#DCE6F2;cursor:pointer;transition:background .15s}
+.sheet button:hover{background:#364253}
+.sheet button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--accent)}
+.chip{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line-2);font:500 13px/1 var(--font-mono);color:var(--text);box-shadow:0 14px 30px -12px rgba(0,0,0,.7);white-space:nowrap}
+.chip .icon{width:16px;height:16px;color:var(--warn)}
+.chip.c1{top:48px;left:-62px;transform:rotate(-6deg)}
+.chip.c2{top:168px;right:-70px;transform:rotate(5deg)}
+.chip.c3{top:296px;left:-80px;transform:rotate(-3deg)}
+.feedback{margin-top:26px;width:100%;max-width:360px;min-height:84px;padding:15px 17px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:15px;line-height:1.5;color:var(--muted)}
+.feedback strong{color:var(--text)}
+.feedback.good{border-color:var(--accent-line);background:linear-gradient(0deg,var(--accent-soft),var(--accent-soft)),var(--surface)}
+.feedback.bad{border-color:var(--warn-line);background:linear-gradient(0deg,var(--warn-soft),var(--warn-soft)),var(--surface)}
+
+/* Sections */
+section{padding:100px 0;scroll-margin-top:72px}
+.band{background:var(--bg-2);border-block:1px solid var(--line)}
+.section-head{max-width:780px;margin-bottom:48px}
+.kicker{font:500 12.5px/1 var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+h2{font:800 clamp(30px,3.8vw,48px)/1.06 var(--font-display);letter-spacing:-.022em;margin:0 0 16px;text-wrap:balance}
+.section-head p:not(.kicker),.intro{color:var(--muted);font-size:18px;margin:0}
+h3{font:700 21px/1.22 var(--font-display);letter-spacing:-.01em;margin:0 0 10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.card p{margin:0;color:var(--muted)}
+.badge{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);margin-bottom:22px}
+.badge .icon{width:22px;height:22px}
+
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* Ethics */
+.ethics{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:start}
+.ethics .intro{margin-bottom:26px}
+.term{border:1px solid var(--line-2);border-radius:16px;background:#070A0E;overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:#0D1218}
+.term-bar span{width:11px;height:11px;border-radius:50%;background:#2B3646}
+.term-bar em{margin-left:8px;font:500 12px var(--font-mono);font-style:normal;color:var(--dim)}
+.term pre{margin:0;padding:18px 18px 20px;font:500 13.5px/1.75 var(--font-mono);color:#C9D3DF;white-space:pre-wrap;word-break:break-word}
+.term .p{color:var(--accent)}
+.term .ok{color:var(--accent)}
+.term .c{color:var(--dim)}
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.principle .num{display:block;font:700 13px var(--font-mono);color:var(--accent);margin-bottom:16px}
+.principle .src{display:block;margin-top:16px;font:500 12px/1.4 var(--font-mono);color:var(--dim)}
+.callout{margin-top:16px;grid-column:1/-1;padding:22px 24px;border-radius:var(--radius);border:1px dashed var(--accent-line);background:var(--accent-soft);color:var(--text)}
+.callout p{margin:0;color:var(--text)}
+
+/* Tips */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.tip{display:flex;flex-direction:column}
+.tip-top{display:flex;align-items:flex-start;justify-content:space-between}
+.tip-n{font:700 13px var(--font-mono);color:var(--dim)}
+.tip details{margin-top:20px;border-top:1px dashed var(--line-2);padding-top:14px}
+.tip summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;font:600 15px/1.3 var(--font-body);color:var(--accent);padding:4px 0}
+.tip summary::-webkit-details-marker{display:none}
+.tip summary::after{content:"+";font:500 24px/1 var(--font-mono);transition:transform .2s}
+.tip details[open] summary::after{transform:rotate(45deg)}
+.how{padding-top:6px;font-size:15px;color:var(--muted)}
+.how .os{font:700 11.5px/1 var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--text);margin:16px 0 8px}
+.how ol,.how ul{margin:0;padding-left:20px}
+.how li{margin:5px 0}
+.how li::marker{color:var(--dim)}
+.path{font:500 12.5px/1.6 var(--font-mono);color:var(--text);background:var(--surface-2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.note{margin-top:28px;display:flex;gap:12px;align-items:flex-start;color:var(--dim);font-size:15px}
+.note .icon{width:18px;height:18px;margin-top:3px;color:var(--accent)}
+
+/* Checklist */
+.check-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.check-side{position:sticky;top:110px}
+.progress{display:flex;align-items:center;gap:20px;margin:30px 0 26px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.ring{position:relative;width:96px;height:96px;flex:none}
+.ring svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10}
+.ring .bg{stroke:var(--surface-2)}
+.ring .fg{stroke:var(--accent);stroke-linecap:round;transition:stroke-dasharray .5s ease}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 20px var(--font-display)}
+.progress strong{display:block;font:700 20px/1.2 var(--font-display);margin-bottom:4px}
+.progress span{color:var(--muted);font-size:15px}
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.checklist label{position:relative;display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface);cursor:pointer;transition:border-color .15s,background .15s}
+.checklist label:hover{border-color:var(--line-2);background:var(--surface-2)}
+.checklist input{position:absolute;opacity:0;width:1px;height:1px}
+.box{width:26px;height:26px;flex:none;border-radius:8px;border:2px solid var(--line-2);display:grid;place-items:center;color:transparent;transition:all .15s}
+.box .icon{width:16px;height:16px;stroke-width:3}
+.checklist input:checked + .box{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.checklist input:focus-visible + .box{outline:2px solid var(--accent);outline-offset:3px}
+.checklist input:checked ~ .txt{color:var(--dim);text-decoration:line-through;text-decoration-color:var(--line-2)}
+.checklist label:has(input:checked){border-color:var(--accent-line)}
+
+/* Rights */
+.rights{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rights li{padding:24px}
+.rights .art{display:block;font:500 12px var(--font-mono);color:var(--dim);margin-bottom:12px}
+.rights strong{display:block;font:700 18px/1.25 var(--font-display);margin-bottom:8px}
+.rights span.d{color:var(--muted);font-size:15px}
+.how-to{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:24px 28px}
+.how-to .badge{margin:0}
+.how-to p{color:var(--text)}
+
+/* Tools */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tool{position:relative;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:border-color .15s,transform .15s}
+.tool:hover{border-color:var(--accent-line);transform:translateY(-3px)}
+.tool .host{font:500 12.5px var(--font-mono);color:var(--accent)}
+.tool strong{font:700 20px/1.25 var(--font-display)}
+.tool span.d{color:var(--muted);font-size:15px}
+.tool .ext{position:absolute;top:26px;right:24px;width:18px;height:18px;color:var(--dim)}
+
+/* Share */
+.share{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.link-box{display:flex;align-items:center;gap:8px;margin:28px 0 18px;padding:8px 8px 8px 18px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);max-width:560px}
+.link-box code{flex:1;min-width:0;font:500 14px var(--font-mono);color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.link-box button{flex:none;border:0;border-radius:999px;padding:11px 16px;background:var(--surface-2);color:var(--text);font-weight:600;font-size:14px;cursor:pointer}
+.link-box button:hover{background:var(--line-2)}
+.qr-card{margin:0;justify-self:center;padding:22px 22px 18px;border-radius:28px;background:#fff;color:#0A0D12;text-align:center;box-shadow:0 40px 80px -40px rgba(184,243,107,.35)}
+.qr-card img{width:240px;height:240px}
+.qr-card figcaption{margin-top:10px;font:600 14px var(--font-body)}
+
+/* About */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.about-logos{display:flex;align-items:center;gap:22px;margin-bottom:34px}
+.about-logos .atitus{height:52px;width:auto}
+.about-logos .curso{height:44px;width:auto}
+.about-logos .vsep{height:48px}
+.about-main{font:600 clamp(20px,2vw,24px)/1.4 var(--font-display);margin:0 0 16px}
+.about-main em{font-style:normal;color:var(--accent)}
+.team{display:grid;gap:12px}
+.member{display:flex;align-items:center;gap:16px;padding:20px}
+.avatar{width:54px;height:54px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font:800 18px var(--font-display)}
+.member strong{display:block;font:700 19px/1.25 var(--font-display)}
+.member .role{color:var(--dim);font:500 13px var(--font-mono)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--line);padding:40px 0 48px;color:var(--dim);font-size:14px}
+.site-footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.site-footer .logos{display:flex;align-items:center;gap:14px}
+.site-footer .logos .atitus{height:26px;width:auto}
+.site-footer .logos .curso{height:22px;width:auto}
+.site-footer p{margin:0;max-width:640px}
+.site-footer p + p{margin-top:4px}
+
+/* Reveal */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{transition:none!important}
+}
+
+.hero .wrap>*,.ethics>*,.check-grid>*,.share>*,.about>*{min-width:0}
+/* Responsive */
+@media (max-width:1140px){
+  .chip.c1{left:-34px}.chip.c2{right:-36px}.chip.c3{left:-42px}
+}
+@media (max-width:1040px){
+  .rights{grid-template-columns:repeat(2,1fr)}
+  .nav a.hide-md{display:none}
+}
+@media (max-width:900px){
+  .nav a:not(.nav-cta){display:none}
+  .hero{padding:48px 0 72px}
+  .hero .wrap,.ethics,.check-grid,.share,.about{grid-template-columns:1fr;gap:44px}
+  .why,.tips,.tools{grid-template-columns:1fr 1fr}
+  .check-side{position:static}
+  .chip.c1{left:-40px}.chip.c2{right:-40px}.chip.c3{left:-48px}
+}
+@media (max-width:640px){
+  section{padding:68px 0}
+  .wrap{padding:0 16px}
+  .why,.tips,.tools,.principles,.rights{grid-template-columns:1fr}
+  .card{padding:24px}
+  .brand{gap:11px}
+  .brand .atitus{height:25px}.brand .curso{height:21px}
+  .vsep{height:24px}
+  .nav a.nav-cta{padding:10px 13px;font-size:13px;margin-left:0}
+  .chip.c1{top:40px;left:-6px}.chip.c2{top:128px;right:-6px}.chip.c3{top:190px;left:-8px}
+  .phone-wrap{width:276px}
+  .actions .btn{flex:1 1 100%}
+  .how-to{grid-template-columns:1fr}
+  .about-logos .atitus{height:40px}.about-logos .curso{height:34px}
+  .qr-card img{width:200px;height:200px}
+}
+@media (max-width:360px){
+  .brand .curso{display:none}
+  .brand .vsep{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16a3 3 0 0 1 6 0M14.5 10h4M14.5 14h3"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4"/><path d="M10.5 12.5L20 3M16 7l3 3M13.5 9.5l2 2"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3-3 3 3 0 0 1-3-3 3 3 0 0 1-3-3z"/><path d="M8.5 11h.01M12 15.5h.01M15.5 13h.01M8 15.5h.01"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 17H2z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-torch" viewBox="0 0 24 24"><path d="M7 3h10l-2 6H9z"/><path d="M9 9h6v11a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/><path d="M12 13v2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Atitus Educação · Ciência da Computação — início">
+      <img class="atitus" src="assets/logo-atitus.png" alt="Atitus Educação" width="337" height="128">
+      <span class="vsep" aria-hidden="true"></span>
+      <img class="curso" src="assets/logo-ciencia-computacao.png" alt="Ciência da Computação" width="398" height="107">
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#dicas">Dicas</a>
+      <a href="#etica-hacker">Ética hacker</a>
+      <a href="#direitos" class="hide-md">LGPD</a>
+      <a href="#sobre">Sobre</a>
+      <a class="nav-cta" href="#checklist">Checklist</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <!-- HERO -->
+  <div class="hero" id="topo">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Dica de TI · Privacidade e dados</span>
+        <h1>Antes de tocar em <span class="pill-word">Permitir</span>, pergunte: esse app precisa mesmo disso?</h1>
+        <p class="lead">Câmera, microfone, contatos, localização: cada permissão entrega um pedaço da sua vida. Aqui você aprende, em poucos minutos, a <strong>decidir o que compartilhar</strong> e a <strong>cobrar seus direitos</strong>.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#dicas">Ver as dicas <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#checklist">Fazer o checklist de 5 min</a>
+        </div>
+        <ul class="hero-meta">
+          <li><svg class="icon"><use href="#i-clock"/></svg>Leitura de 6 min</li>
+          <li><svg class="icon"><use href="#i-phone"/></svg>Android e iPhone</li>
+          <li><svg class="icon"><use href="#i-scale"/></svg>Com base na LGPD</li>
+        </ul>
+      </div>
+
+      <div class="demo">
+        <div class="phone-wrap">
+          <span class="chip c1"><svg class="icon"><use href="#i-users"/></svg>contatos?</span>
+          <span class="chip c2"><svg class="icon"><use href="#i-mic"/></svg>microfone?</span>
+          <span class="chip c3"><svg class="icon"><use href="#i-pin"/></svg>localização?</span>
+          <div class="phone">
+            <div class="screen">
+              <span class="island" aria-hidden="true"></span>
+              <div class="fake-app" aria-hidden="true">
+                <span class="torch"><svg class="icon"><use href="#i-torch"/></svg></span>
+                <b>Lanterna Turbo</b>
+              </div>
+              <div class="scrim" aria-hidden="true"></div>
+              <div class="sheet" role="group" aria-labelledby="perm-q">
+                <span class="sheet-ico"><svg class="icon"><use href="#i-pin"/></svg></span>
+                <p id="perm-q">Permitir que <b>Lanterna Turbo</b> acesse a localização deste dispositivo?</p>
+                <button type="button" data-perm="uso" aria-pressed="false">Durante o uso do app</button>
+                <button type="button" data-perm="vez" aria-pressed="false">Apenas esta vez</button>
+                <button type="button" data-perm="nao" aria-pressed="false">Não permitir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="perm-feedback" aria-live="polite"><strong>Teste rápido:</strong> um app de lanterna está pedindo sua localização. O que você responde?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POR QUE IMPORTA -->
+  <section class="band" id="por-que">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Por que isso importa</p>
+        <h2>Seus dados valem mais do que parece</h2>
+        <p>Não é preciso ter “algo a esconder” para se proteger. Privacidade é decidir quem sabe o quê sobre você.</p>
+      </div>
+      <div class="why">
+        <article class="card reveal">
+          <span class="badge"><svg class="icon"><use href="#i-eye"/></svg></span>
+          <h3>Seus dados contam uma história</h3>
+          <p>Localização, contatos, fotos e buscas, juntos, revelam onde você mora, com quem anda, o que compra e a que horas sai de casa.</p>
+        </article>
+        <article class="card reveal">
+          <span class="badge"><svg class="icon"><use href="#i-coin"/></svg></span>
+          <h3>Dado pessoal vale dinheiro</h3>
+          <p>Muitos serviços “gratuitos” se sustentam com anúncios direcionados, alimentados pelo que você faz online. Se você não paga, seus dados podem ser o pagamento.</p>
+        </article>
+        <article class="card reveal">
+          <span class="badge"><svg class="icon"><use href="#i-alert"/></svg></span>
+          <h3>Vazamento vira golpe</h3>
+          <p>Dados vazados ajudam golpistas a parecerem confiáveis: eles já sabem seu nome, seu CPF e até o seu banco. Quanto menos você espalha, menos eles têm.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉTICA HACKER -->
+  <section id="etica-hacker">
+    <div class="wrap ethics">
+      <div class="reveal">
+        <p class="kicker">Ética hacker</p>
+        <h2>O que hackers têm a ver com a sua privacidade?</h2>
+        <p class="intro">Na origem, ser hacker não é invadir sistemas: é ter curiosidade para entender como a tecnologia funciona e usar esse conhecimento para o bem. A ética hacker, descrita por Steven Levy (1984) e ampliada pelo Chaos Computer Club e por Pekka Himanen, conversa diretamente com a proteção de dados.</p>
+        <div class="term" role="img" aria-label="Terminal: a pergunta do projeto é como auxiliar as pessoas a conhecerem e utilizarem melhor a tecnologia; a resposta é compartilhar conhecimento, proteger dados privados e explicar sem complicar.">
+          <div class="term-bar"><span></span><span></span><span></span><em>pbl@atitus:~</em></div>
+<pre><span class="p">$</span> cat pergunta.txt
+Como auxiliar as pessoas a conhecerem e
+utilizarem melhor a tecnologia?
+
+<span class="p">$</span> ./responder --tema privacidade
+<span class="ok">✔</span> compartilhar conhecimento
+<span class="ok">✔</span> proteger dados privados
+<span class="ok">✔</span> explicar sem complicar
+<span class="c"># resultado: este site :)</span></pre>
+        </div>
+      </div>
+      <div class="principles">
+        <article class="card principle reveal">
+          <span class="num">01</span>
+          <h3>Usar dados públicos, proteger dados privados</h3>
+          <p>Informação de interesse público deve circular; informação pessoal deve ser protegida. É o equilíbrio que buscamos aqui.</p>
+          <span class="src">Chaos Computer Club</span>
+        </article>
+        <article class="card principle reveal">
+          <span class="num">02</span>
+          <h3>Toda informação deve ser livre</h3>
+          <p>Saber como a tecnologia funciona não pode ficar trancado com especialistas. Por isso este material é aberto e gratuito: compartilhe.</p>
+          <span class="src">Steven Levy, “Hackers”</span>
+        </article>
+        <article class="card principle reveal">
+          <span class="num">03</span>
+          <h3>Mão na massa</h3>
+          <p>Hackers aprendem explorando. Abra as configurações do seu celular, teste, mude. Entender o sistema é o primeiro passo para controlá-lo.</p>
+          <span class="src">Steven Levy, “Hackers”</span>
+        </article>
+        <article class="card principle reveal">
+          <span class="num">04</span>
+          <h3>Desconfie do padrão</h3>
+          <p>Não aceite uma configuração só porque veio de fábrica. Questione quem guarda seus dados, por quanto tempo e para quê.</p>
+          <span class="src">Levy: “desconfie da autoridade”</span>
+        </article>
+        <div class="callout reveal">
+          <p>Pekka Himanen chamou de <strong>“nética”</strong> a parte da ética hacker que defende a liberdade de expressão e a privacidade na rede. Este projeto é a nossa versão disso: usar o que aprendemos em Ciência da Computação para ajudar as pessoas a usarem melhor a tecnologia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DICAS -->
+  <section class="band" id="dicas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Dicas práticas</p>
+        <h2>9 atitudes que protegem seus dados</h2>
+        <p>Cada dica tem o passo a passo. Toque em “Como fazer” para abrir.</p>
+      </div>
+
+      <div class="tips">
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-shield"/></svg></span><span class="tip-n">01</span></div>
+          <h3>Revise as permissões dos apps</h3>
+          <p>Uma lanterna não precisa dos seus contatos e um jogo não precisa do microfone. Se a permissão não combina com o que o app faz, negue: na maioria das vezes, ele continua funcionando.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <p class="os">Android</p>
+              <ol>
+                <li>Abra <span class="path">Configurações › Apps</span> e escolha o app.</li>
+                <li>Toque em <span class="path">Permissões</span> e mude para “Não permitir” o que não fizer sentido.</li>
+                <li>Para ver tudo por tipo, procure o <span class="path">Gerenciador de permissões</span> em Segurança e privacidade.</li>
+              </ol>
+              <p class="os">iPhone</p>
+              <ol>
+                <li>Abra <span class="path">Ajustes › Privacidade e Segurança</span>.</li>
+                <li>Entre em Câmera, Microfone, Contatos, Fotos… e desligue os apps que não precisam.</li>
+              </ol>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-pin"/></svg></span><span class="tip-n">02</span></div>
+          <h3>Localização só durante o uso</h3>
+          <p>O app de clima precisa saber sua cidade, não a sua rua. Prefira “Durante o uso do app” e desligue a localização exata quando ela não for necessária.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <p class="os">Android</p>
+              <ol>
+                <li><span class="path">Configurações › Apps › [app] › Permissões › Localização</span>.</li>
+                <li>Escolha “Permitir apenas durante o uso do app” ou “Não permitir”.</li>
+                <li>Desative “Usar local exato” se o app só precisa da região.</li>
+              </ol>
+              <p class="os">iPhone</p>
+              <ol>
+                <li><span class="path">Ajustes › Privacidade e Segurança › Serviços de Localização</span>.</li>
+                <li>Toque no app e escolha “Durante o Uso do App” ou “Nunca”.</li>
+                <li>Desligue “Localização Precisa” quando não for necessária.</li>
+              </ol>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-camera"/></svg></span><span class="tip-n">03</span></div>
+          <h3>Suas fotos podem dizer onde você está</h3>
+          <p>Fotos guardam dados escondidos (metadados), como data, modelo do celular e, às vezes, as coordenadas exatas de onde foram tiradas.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <p class="os">Android</p>
+              <ul>
+                <li>Nas configurações do app Câmera, desative a opção de salvar o local (pode se chamar “Tags de localização” ou “Salvar local”).</li>
+              </ul>
+              <p class="os">iPhone</p>
+              <ul>
+                <li>Ao compartilhar uma foto, toque em <span class="path">Opções</span> no topo e desligue “Localização”.</li>
+                <li>Para nunca salvar: <span class="path">Ajustes › Privacidade e Segurança › Serviços de Localização › Câmera › Nunca</span>.</li>
+              </ul>
+              <p class="os">Bom saber</p>
+              <ul>
+                <li>Redes sociais costumam apagar esses dados ao publicar, mas fotos enviadas como arquivo, por e-mail ou em nuvem podem mantê-los.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-eye"/></svg></span><span class="tip-n">04</span></div>
+          <h3>Pense antes de postar</h3>
+          <p>Tudo que vai para a internet pode ser copiado, salvo e cruzado com outras informações. Pequenos detalhes montam o retrato da sua rotina.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <p class="os">Evite postar</p>
+              <ul>
+                <li>Documentos, cartões e comprovantes (RG, CNH, cartão do banco, boleto).</li>
+                <li>Cartão de embarque: o código guarda dados da sua reserva.</li>
+                <li>Crachá, placa do carro, número da casa e uniforme da escola das crianças.</li>
+                <li>Localização em tempo real: poste a viagem depois de voltar.</li>
+              </ul>
+              <p class="os">Configure</p>
+              <ul>
+                <li>Deixe o perfil privado e revise quem pode ver suas publicações e marcações.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-id"/></svg></span><span class="tip-n">05</span></div>
+          <h3>Seu CPF não é moeda de troca</h3>
+          <p>Pediram seu CPF na farmácia, na loja ou no cadastro do app? Pela LGPD, você tem o direito de saber para que o dado será usado, e só deve ser coletado o necessário.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <ul>
+                <li>Pergunte: “Para que vocês usam meu CPF?” e decida se o desconto vale o seu perfil de consumo.</li>
+                <li>Nunca envie foto de documento para desconhecidos ou por links recebidos em mensagens.</li>
+                <li>Consulte o <a href="https://www.bcb.gov.br/cidadaniafinanceira/registrato" target="_blank" rel="noopener">Registrato</a> do Banco Central para ver contas, chaves Pix e empréstimos no seu nome.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-key"/></svg></span><span class="tip-n">06</span></div>
+          <h3>Tranque o acesso às suas contas</h3>
+          <p>Não adianta configurar tudo se outra pessoa entra na sua conta. Senha forte e verificação em duas etapas fecham essa porta.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <ul>
+                <li>Use uma senha longa e diferente para cada serviço (frases funcionam bem) e, se puder, um gerenciador de senhas.</li>
+                <li>WhatsApp: <span class="path">Configurações › Conta › Confirmação em duas etapas</span>.</li>
+                <li>Google: <span class="path">myaccount.google.com › Segurança</span> e ative a verificação em duas etapas.</li>
+                <li>Instagram e Facebook: <span class="path">Central de Contas › Senha e segurança › Autenticação de dois fatores</span>.</li>
+                <li>Veja se seu e-mail já apareceu em vazamentos no <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">haveibeenpwned.com</a>.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-link"/></svg></span><span class="tip-n">07</span></div>
+          <h3>Desconfie de links e “brindes”</h3>
+          <p>Quiz “qual personagem você é”, promoção imperdível, “atualize seu cadastro”: muitas vezes o objetivo é coletar seus dados para aplicar golpes.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <ul>
+                <li>Não clique em links recebidos por SMS, e-mail ou WhatsApp que pedem dados ou senha.</li>
+                <li>Acesse bancos e lojas pelo app oficial ou digitando o endereço.</li>
+                <li>Empresas sérias não pedem senha nem código de verificação por mensagem.</li>
+                <li>Recebeu um código por SMS que você não pediu? Não repasse para ninguém.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-cookie"/></svg></span><span class="tip-n">08</span></div>
+          <h3>Limite cookies e rastreadores</h3>
+          <p>Cookies e rastreadores acompanham o que você faz em vários sites para montar um perfil de anúncios. Dá para reduzir bastante isso.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <ul>
+                <li>Nos avisos de cookies, prefira “Rejeitar” ou “Somente necessários”.</li>
+                <li>No navegador, bloqueie cookies de terceiros nas configurações de privacidade.</li>
+                <li>Faça o <a href="https://myaccount.google.com/privacycheckup" target="_blank" rel="noopener">Checkup de privacidade do Google</a> e revise a personalização de anúncios.</li>
+                <li>A aba anônima não te deixa invisível: ela só não salva o histórico no aparelho.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="card tip reveal">
+          <div class="tip-top"><span class="badge"><svg class="icon"><use href="#i-wifi"/></svg></span><span class="tip-n">09</span></div>
+          <h3>Wi-Fi público com cuidado</h3>
+          <p>Redes abertas de shopping, rodoviária e café são práticas, mas você não sabe quem as controla nem quem mais está conectado.</p>
+          <details>
+            <summary>Como fazer</summary>
+            <div class="how">
+              <ul>
+                <li>Evite acessar o banco ou digitar senhas em Wi-Fi aberto: prefira os dados móveis.</li>
+                <li>Desative a conexão automática a redes abertas.</li>
+                <li>Esqueça as redes que você não usa mais.</li>
+                <li>Desconfie de redes com nomes genéricos, como “WiFi Grátis”.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+      </div>
+
+      <p class="note"><svg class="icon"><use href="#i-info"/></svg><span>Os nomes dos menus mudam conforme a marca do aparelho e a versão do sistema. Não achou? Use a lupa de busca das Configurações e digite “permissões” ou “localização”.</span></p>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <div class="wrap check-grid">
+      <div class="check-side reveal">
+        <p class="kicker">Mão na massa</p>
+        <h2>Checklist de 5 minutos</h2>
+        <p class="intro">Pegue o celular e marque o que você já fez. O progresso fica salvo só neste aparelho; nenhum dado sai daqui.</p>
+        <div class="progress">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" id="ring-fg" cx="60" cy="60" r="50" pathLength="100" stroke-dasharray="0 100"/></svg>
+            <b id="ring-pct">0%</b>
+          </div>
+          <div aria-live="polite">
+            <strong id="check-count">0 de 9 feitos</strong>
+            <span id="check-msg">Bora começar? Cada item leva menos de um minuto.</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-ghost" id="check-reset">Recomeçar</button>
+      </div>
+
+      <ul class="checklist" id="checklist-list">
+        <li><label><input type="checkbox" data-id="permissoes"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Revisei as permissões de câmera, microfone e contatos dos meus apps</span></label></li>
+        <li><label><input type="checkbox" data-id="localizacao"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Troquei a localização “Sempre” por “Durante o uso” ou “Nunca”</span></label></li>
+        <li><label><input type="checkbox" data-id="fotos"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Desativei a localização nas fotos da câmera</span></label></li>
+        <li><label><input type="checkbox" data-id="perfil"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Deixei meu perfil privado ou revisei quem vê minhas publicações</span></label></li>
+        <li><label><input type="checkbox" data-id="whatsapp"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Ativei a confirmação em duas etapas no WhatsApp</span></label></li>
+        <li><label><input type="checkbox" data-id="email2fa"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Ativei a verificação em duas etapas no meu e-mail</span></label></li>
+        <li><label><input type="checkbox" data-id="vazamento"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Conferi meu e-mail no haveibeenpwned.com</span></label></li>
+        <li><label><input type="checkbox" data-id="apps"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Apaguei os apps que eu não uso mais</span></label></li>
+        <li><label><input type="checkbox" data-id="cookies"><span class="box"><svg class="icon"><use href="#i-check"/></svg></span><span class="txt">Bloqueei cookies de terceiros no navegador</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIREITOS -->
+  <section class="band" id="direitos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Seus direitos</p>
+        <h2>A LGPD está do seu lado</h2>
+        <p>A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) garante a você, titular dos dados, uma série de direitos diante de empresas e órgãos públicos.</p>
+      </div>
+      <ul class="rights">
+        <li class="card reveal"><span class="art">Art. 18, I e II</span><strong>Confirmação e acesso</strong><span class="d">Saber se uma empresa usa seus dados e receber uma cópia deles.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, III</span><strong>Correção</strong><span class="d">Corrigir dados incompletos, errados ou desatualizados.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, IV</span><strong>Anonimização, bloqueio ou eliminação</strong><span class="d">De dados desnecessários, excessivos ou tratados fora da lei.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, V</span><strong>Portabilidade</strong><span class="d">Levar seus dados para outro fornecedor de serviço.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, VI</span><strong>Eliminação</strong><span class="d">Pedir a exclusão dos dados tratados com o seu consentimento.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, VII</span><strong>Saber com quem foi compartilhado</strong><span class="d">Descobrir com quais empresas e órgãos seus dados foram divididos.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, VIII</span><strong>Poder dizer não</strong><span class="d">Ser informado sobre a possibilidade de negar o consentimento e o que acontece se negar.</span></li>
+        <li class="card reveal"><span class="art">Art. 18, IX</span><strong>Revogar o consentimento</strong><span class="d">Retirar, a qualquer momento, a autorização que você deu.</span></li>
+      </ul>
+      <div class="card how-to reveal">
+        <span class="badge"><svg class="icon"><use href="#i-scale"/></svg></span>
+        <p><strong>Como pedir:</strong> procure na política de privacidade da empresa o contato do Encarregado de dados (DPO) e faça o pedido por escrito. Se não for atendido, você pode levar o caso à <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">ANPD</a>, a Autoridade Nacional de Proteção de Dados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FERRAMENTAS -->
+  <section id="ferramentas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Ferramentas úteis</p>
+        <h2>Links oficiais e gratuitos</h2>
+        <p>Salve esses endereços. Todos são gratuitos e não pedem nada além do necessário.</p>
+      </div>
+      <div class="tools">
+        <a class="card tool reveal" href="https://haveibeenpwned.com/" target="_blank" rel="noopener">
+          <span class="host">haveibeenpwned.com</span><strong>Meu e-mail vazou?</strong><span class="d">Confira se o seu endereço apareceu em vazamentos de dados conhecidos.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+        <a class="card tool reveal" href="https://www.bcb.gov.br/cidadaniafinanceira/registrato" target="_blank" rel="noopener">
+          <span class="host">bcb.gov.br</span><strong>Registrato</strong><span class="d">Veja contas, chaves Pix e empréstimos registrados no seu CPF, direto no Banco Central.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+        <a class="card tool reveal" href="https://myaccount.google.com/privacycheckup" target="_blank" rel="noopener">
+          <span class="host">myaccount.google.com</span><strong>Checkup de privacidade</strong><span class="d">Revise o que o Google guarda sobre você e como isso é usado.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+        <a class="card tool reveal" href="https://accountscenter.instagram.com/" target="_blank" rel="noopener">
+          <span class="host">accountscenter.instagram.com</span><strong>Central de Contas da Meta</strong><span class="d">Privacidade, senha e autenticação de dois fatores do Instagram e do Facebook.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+        <a class="card tool reveal" href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">
+          <span class="host">gov.br/anpd</span><strong>ANPD</strong><span class="d">Orientações oficiais e canal para reclamar quando seus direitos não forem atendidos.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+        <a class="card tool reveal" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">
+          <span class="host">planalto.gov.br</span><strong>Leia a LGPD</strong><span class="d">A Lei nº 13.709/2018 na íntegra, no site oficial do governo.</span>
+          <svg class="icon ext"><use href="#i-ext"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARTILHE -->
+  <section class="band" id="compartilhe">
+    <div class="wrap share">
+      <div class="reveal">
+        <p class="kicker">Informação livre</p>
+        <h2>Passe adiante</h2>
+        <p class="intro">Privacidade é um esforço coletivo: seus contatos também guardam dados sobre você. Mande este guia para alguém da família, principalmente quem está começando a usar a tecnologia.</p>
+        <div class="link-box">
+          <code id="site-url">victorrizzotto.github.io/privacidade-digital</code>
+          <button type="button" id="copy-link">Copiar link</button>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="share-btn"><svg class="icon"><use href="#i-share"/></svg>Compartilhar</button>
+          <a class="btn btn-ghost" href="folder/folder-feed.png" download><svg class="icon"><use href="#i-down"/></svg>Folder (feed)</a>
+          <a class="btn btn-ghost" href="folder/folder-story.png" download><svg class="icon"><use href="#i-down"/></svg>Folder (story)</a>
+        </div>
+      </div>
+      <figure class="qr-card reveal">
+        <img src="assets/qrcode.svg" alt="QR Code que abre este site: victorrizzotto.github.io/privacidade-digital" width="240" height="240">
+        <figcaption>Aponte a câmera do celular</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap about">
+      <div class="reveal">
+        <div class="about-logos">
+          <img class="atitus" src="assets/logo-atitus.png" alt="Atitus Educação" width="337" height="128">
+          <span class="vsep" aria-hidden="true"></span>
+          <img class="curso" src="assets/logo-ciencia-computacao.png" alt="Ciência da Computação" width="398" height="107">
+        </div>
+        <p class="kicker">Sobre o projeto</p>
+        <p class="about-main">Projeto acadêmico da disciplina de <em>Desafio da Profissão</em> / Prof. Suellen S. Sotille – Semestre 2026/01</p>
+        <p class="intro">Atividade de PBL (Aprendizagem Baseada em Problemas) do curso de Ciência da Computação da Atitus Educação, que relaciona os conceitos de Ética Hacker ao problema: como auxiliar as pessoas a conhecerem e utilizarem melhor a tecnologia?</p>
+      </div>
+      <div class="team reveal">
+        <p class="kicker">Integrantes do grupo</p>
+        <div class="card member"><span class="avatar" aria-hidden="true">DB</span><div><strong>Davi Migliorini Bassani</strong><span class="role">Ciência da Computação</span></div></div>
+        <div class="card member"><span class="avatar" aria-hidden="true">VR</span><div><strong>Victor Augusto Rizzotto</strong><span class="role">Ciência da Computação</span></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="logos">
+      <img class="atitus" src="assets/logo-atitus.png" alt="Atitus Educação" width="337" height="128">
+      <span class="vsep" aria-hidden="true"></span>
+      <img class="curso" src="assets/logo-ciencia-computacao.png" alt="Ciência da Computação" width="398" height="107">
+    </div>
+    <div>
+      <p>Projeto acadêmico da disciplina de Desafio da Profissão / <span style="white-space:nowrap">Prof. Suellen S. Sotille – Semestre 2026/01</span></p>
+      <p>Integrantes: Davi Migliorini Bassani e Victor Augusto Rizzotto</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  root.classList.add('js');
+  var SITE_URL = 'https://victorrizzotto.github.io/privacidade-digital/';
+
+  /* Demonstração da permissão */
+  var feedback = document.getElementById('perm-feedback');
+  var answers = {
+    uso: ['bad', '<strong>Hmm…</strong> uma lanterna precisa mesmo saber onde você está enquanto ilumina? Se a permissão não combina com o app, negue.'],
+    vez: ['bad', '<strong>Melhor que “sempre”,</strong> mas ainda assim: lanterna não precisa de localização. Na dúvida, toque em “Não permitir”.'],
+    nao: ['good', '<strong>Boa escolha!</strong> A lanterna continua funcionando, e a sua localização fica com você. É exatamente essa a dica.']
+  };
+  var permButtons = document.querySelectorAll('[data-perm]');
+  permButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var a = answers[btn.getAttribute('data-perm')];
+      permButtons.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      feedback.className = 'feedback ' + a[0];
+      feedback.innerHTML = a[1];
+    });
+  });
+
+  /* Checklist */
+  var KEY = 'privacidade-digital-checklist-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checklist-list input'));
+  var ring = document.getElementById('ring-fg');
+  var pctEl = document.getElementById('ring-pct');
+  var countEl = document.getElementById('check-count');
+  var msgEl = document.getElementById('check-msg');
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var total = boxes.length;
+    var pct = Math.round(done / total * 100);
+    ring.setAttribute('stroke-dasharray', pct + ' 100');
+    pctEl.textContent = pct + '%';
+    countEl.textContent = done + ' de ' + total + (done === 1 ? ' feito' : ' feitos');
+    msgEl.textContent = done === 0 ? 'Bora começar? Cada item leva menos de um minuto.'
+      : done === total ? 'Mandou bem! Agora compartilhe com alguém da sua família.'
+      : done >= total - 3 ? 'Falta pouco! Termine os últimos itens.'
+      : 'Bom começo! Seus dados já estão mais protegidos.';
+  }
+  boxes.forEach(function(b){
+    b.checked = !!state[b.getAttribute('data-id')];
+    b.addEventListener('change', function(){ state[b.getAttribute('data-id')] = b.checked; save(); render(); });
+  });
+  document.getElementById('check-reset').addEventListener('click', function(){
+    boxes.forEach(function(b){ b.checked = false; }); state = {}; save(); render();
+  });
+  render();
+
+  /* Copiar e compartilhar */
+  var copyBtn = document.getElementById('copy-link');
+  function copyLink(){
+    var done = function(){ copyBtn.textContent = 'Copiado!'; setTimeout(function(){ copyBtn.textContent = 'Copiar link'; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(SITE_URL).then(done, function(){ selectUrl(); });
+    } else { selectUrl(); }
+  }
+  function selectUrl(){
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('site-url'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  copyBtn.addEventListener('click', copyLink);
+  document.getElementById('share-btn').addEventListener('click', function(){
+    if (navigator.share) {
+      navigator.share({ title: 'Seus dados, suas regras', text: 'Antes de tocar em “Permitir”, pergunte: esse app precisa mesmo disso? Guia rápido de privacidade:', url: SITE_URL }).catch(function(){});
+    } else { copyLink(); }
+  });
+
+  /* Animação de entrada */
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    items.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

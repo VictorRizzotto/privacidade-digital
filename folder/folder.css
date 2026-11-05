@@ -1,0 +1,61 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0D12; --surface:#131922; --surface-2:#1A222D; --line:#222C3A; --line-2:#2E3A4B;
+  --text:#ECF1F7; --muted:#A3AFBF; --dim:#738096;
+  --accent:#B8F36B; --accent-ink:#0B1206; --warn:#FFB547;
+}
+html,body{background:var(--bg)}
+body{width:1080px;color:var(--text);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+svg{display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.poster{position:relative;width:1080px;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.nw{white-space:nowrap}
+.poster::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--line) 1.5px,transparent 1.5px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 60% at 80% 35%,#000 10%,transparent 70%);opacity:.7}
+.poster::after{content:"";position:absolute;z-index:-1;width:1000px;height:1000px;right:-360px;top:-200px;background:radial-gradient(circle,rgba(184,243,107,.17),transparent 60%)}
+
+.logos{display:flex;align-items:center;gap:28px}
+.logos .atitus{height:56px;width:auto}
+.logos .curso{height:47px;width:auto}
+.vsep{width:2px;height:52px;background:var(--line-2)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:14px;font:500 22px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:13px 20px;border:2px solid rgba(184,243,107,.35);border-radius:999px;background:rgba(184,243,107,.1)}
+.eyebrow .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(184,243,107,.18)}
+
+h1{font:800 80px/1.03 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin-top:30px}
+.pill{display:inline-block;padding:.01em .3em .07em;border-radius:.4em;background:var(--accent);color:var(--accent-ink);transform:rotate(-2.5deg);box-shadow:0 16px 40px -12px rgba(184,243,107,.6)}
+
+.mid{display:flex;align-items:center;gap:44px}
+.sub{text-wrap:pretty;flex:1;font-size:29px;line-height:1.42;color:var(--muted)}
+.sub strong{color:var(--text);font-weight:600}
+
+.sheet{flex:none;width:340px;background:#212A36;border:1px solid var(--line-2);border-radius:30px;padding:20px 16px 14px;text-align:center;transform:rotate(3deg);box-shadow:0 40px 70px -30px rgba(0,0,0,.9)}
+.sheet-ico{width:44px;height:44px;margin:0 auto 10px;border-radius:50%;background:rgba(255,181,71,.14);color:var(--warn);display:grid;place-items:center}
+.sheet-ico svg{width:22px;height:22px}
+.sheet p{font:500 18px/1.36 "Inter",sans-serif;margin:0 6px 12px;color:#EEF2F7}
+.opt{display:flex;align-items:center;justify-content:center;gap:10px;font:600 17px/1 "Inter",sans-serif;padding:14px 10px;margin-top:7px;border-radius:16px;background:#2C3644;color:#C9D3DF}
+.opt.yes{background:var(--accent);color:var(--accent-ink)}
+.opt.yes svg{width:22px;height:22px;stroke-width:3}
+
+.qr-panel{display:flex;align-items:center;gap:34px;padding:22px 32px 22px 22px;border-radius:34px;background:var(--surface);border:2px solid var(--line-2)}
+.qr{flex:none;background:#fff;border-radius:24px;padding:12px}
+.qr img{display:block;width:184px;height:184px}
+.qr-text strong{display:block;font:800 38px/1.1 "Bricolage Grotesque",sans-serif;letter-spacing:-.015em;margin-bottom:10px}
+.qr-text p{text-wrap:balance;font-size:22px;line-height:1.4;color:var(--muted);margin-bottom:16px}
+.url{display:inline-flex;align-items:center;gap:10px;font:700 23px/1.2 "JetBrains Mono",monospace;color:var(--accent)}
+.url svg{width:24px;height:24px;flex:none}
+
+.credits{border-top:2px solid var(--line-2);padding-top:22px;font-size:19.5px;line-height:1.5;color:var(--muted)}
+.credits strong{color:var(--text);font-weight:600}
+
+/* Feed 1080x1350 */
+.feed{height:1350px;padding:62px 72px 58px}
+
+/* Story 1080x1920 (conteúdo dentro da área segura do Instagram) */
+.story{height:1920px;padding:190px 80px 236px}
+.story .logos{justify-content:flex-start}
+.story h1{font-size:90px;margin-top:28px}
+.story .mid{flex-direction:column;align-items:stretch;gap:30px}
+.story .sub{font-size:32px}
+.story .sheet{align-self:center;width:400px;transform:rotate(-2.5deg)}
+.story .qr img{width:204px;height:204px}
+.story .qr-text strong{font-size:42px}
