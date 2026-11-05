@@ -22,7 +22,7 @@ Landing page e folder com dicas de TI sobre **privacidade e dados pessoais**, re
 
 ## Projeto acadêmico
 
-Projeto acadêmico da disciplina de **Desafio da Profissão** / Prof. Suellen S. Sotille – Semestre 2026/01
+Projeto acadêmico da disciplina de **Desafio da Profissão** / Prof. Suellen S. Sotille – Semestre 2026/02
 Curso de Ciência da Computação, Atitus Educação.
 
 **Integrantes:** Davi Migliorini Bassani e Victor Augusto Rizzotto
