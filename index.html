@@ -222,6 +222,17 @@ h3{font:700 21px/1.22 var(--font-display);letter-spacing:-.01em;margin:0 0 10px}
 .member strong{display:block;font:700 19px/1.25 var(--font-display)}
 .member .role{color:var(--dim);font:500 13px var(--font-mono)}
 
+/* Fontes */
+.sources{columns:2 380px;column-gap:16px}
+.source-group{display:block;break-inside:avoid;margin-bottom:16px}
+.source-group h3{margin-bottom:6px}
+.source-group .used{display:block;font:500 12px/1.5 var(--font-mono);color:var(--dim);margin-bottom:18px}
+.refs{margin:0;padding:0;list-style:none;display:grid;gap:14px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+.refs li{position:relative;padding-left:18px}
+.refs li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+.refs em{color:var(--text)}
+.refs a{color:var(--accent);text-decoration:underline;text-decoration-color:var(--accent-line);text-underline-offset:2px;overflow-wrap:anywhere}
+
 /* Footer */
 .site-footer{border-top:1px solid var(--line);padding:40px 0 48px;color:var(--dim);font-size:14px}
 .site-footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
@@ -783,6 +794,82 @@ utilizarem melhor a tecnologia?
         <p class="kicker">Integrantes do grupo</p>
         <div class="card member"><span class="avatar" aria-hidden="true">DB</span><div><strong>Davi Migliorini Bassani</strong><span class="role">Ciência da Computação</span></div></div>
         <div class="card member"><span class="avatar" aria-hidden="true">VR</span><div><strong>Victor Augusto Rizzotto</strong><span class="role">Ciência da Computação</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FONTES -->
+  <section class="band" id="fontes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Referências</p>
+        <h2>Fontes das informações</h2>
+        <p>O conteúdo deste site foi elaborado com base nas fontes abaixo. Links acessados em 5 nov. 2026.</p>
+      </div>
+      <div class="sources">
+        <div class="card source-group reveal">
+          <h3>Ética hacker</h3>
+          <span class="used">Usado em: O que hackers têm a ver com a sua privacidade?</span>
+          <ul class="refs">
+            <li>LEVY, Steven. <em>Hackers: heroes of the computer revolution</em>. Garden City: Anchor Press/Doubleday, 1984.</li>
+            <li>HIMANEN, Pekka. <em>A ética dos hackers e o espírito da era da informação</em>. Rio de Janeiro: Campus, 2001.</li>
+            <li>CHAOS COMPUTER CLUB. <em>Hackerethik</em>. Disponível em: <a href="https://www.ccc.de/de/hackerethik" target="_blank" rel="noopener">https://www.ccc.de/de/hackerethik</a>.</li>
+          </ul>
+        </div>
+
+        <div class="card source-group reveal">
+          <h3>Legislação e direitos</h3>
+          <span class="used">Usado em: dicas 05 e 08 · A LGPD está do seu lado · Ferramentas úteis</span>
+          <ul class="refs">
+            <li>BRASIL. <em>Lei nº 13.709, de 14 de agosto de 2018</em>. Lei Geral de Proteção de Dados Pessoais (LGPD), arts. 6º e 18. Brasília, DF: Presidência da República, 2018. Disponível em: <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm</a>.</li>
+            <li>AUTORIDADE NACIONAL DE PROTEÇÃO DE DADOS (ANPD). <em>Guia orientativo: cookies e proteção de dados pessoais</em>. Brasília, DF: ANPD, 2022. Disponível em: <a href="https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf" target="_blank" rel="noopener">https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf</a>.</li>
+            <li>AUTORIDADE NACIONAL DE PROTEÇÃO DE DADOS (ANPD). <em>Portal da ANPD</em>. Disponível em: <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">https://www.gov.br/anpd/pt-br</a>.</li>
+            <li>BANCO CENTRAL DO BRASIL. <em>Registrato</em>. Disponível em: <a href="https://www.bcb.gov.br/cidadaniafinanceira/registrato" target="_blank" rel="noopener">https://www.bcb.gov.br/cidadaniafinanceira/registrato</a>.</li>
+          </ul>
+        </div>
+
+        <div class="card source-group reveal">
+          <h3>Segurança e privacidade</h3>
+          <span class="used">Usado em: Por que isso importa · dicas 04, 06, 07 e 09</span>
+          <ul class="refs">
+            <li>CERT.br. <em>Cartilha de Segurança para Internet</em>. São Paulo: NIC.br. Fascículos:
+              <a href="https://cartilha.cert.br/fasciculos/privacidade/fasciculo-privacidade.pdf" target="_blank" rel="noopener">Privacidade</a>;
+              <a href="https://cartilha.cert.br/fasciculos/protecao-de-dados/fasciculo-protecao-de-dados.pdf" target="_blank" rel="noopener">Proteção de Dados</a>;
+              <a href="https://cartilha.cert.br/fasciculos/vazamento-de-dados/fasciculo-vazamento-de-dados.pdf" target="_blank" rel="noopener">Vazamento de Dados</a>;
+              <a href="https://cartilha.cert.br/fasciculos/redes-sociais/fasciculo-redes-sociais.pdf" target="_blank" rel="noopener">Redes Sociais</a>;
+              <a href="https://cartilha.cert.br/fasciculos/autenticacao/fasciculo-autenticacao.pdf" target="_blank" rel="noopener">Autenticação</a>;
+              <a href="https://cartilha.cert.br/fasciculos/golpes/fasciculo-golpes.pdf" target="_blank" rel="noopener">Golpes</a>;
+              <a href="https://cartilha.cert.br/fasciculos/redes/fasciculo-redes.pdf" target="_blank" rel="noopener">Redes</a>;
+              <a href="https://cartilha.cert.br/fasciculos/celulares-e-tablets/fasciculo-celulares-e-tablets.pdf" target="_blank" rel="noopener">Celulares e Tablets</a>.
+              Disponível em: <a href="https://cartilha.cert.br/fasciculos/" target="_blank" rel="noopener">https://cartilha.cert.br/fasciculos/</a>.</li>
+            <li>HUNT, Troy. <em>Have I Been Pwned</em>. Disponível em: <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">https://haveibeenpwned.com/</a>.</li>
+          </ul>
+        </div>
+
+        <div class="card source-group reveal">
+          <h3>Passo a passo no Android e no iPhone</h3>
+          <span class="used">Usado em: dicas 01, 02 e 03 · Checklist de 5 minutos</span>
+          <ul class="refs">
+            <li>GOOGLE. <em>Mudar permissões do app no smartphone Android</em>. Ajuda do Android. Disponível em: <a href="https://support.google.com/android/answer/9431959?hl=pt-BR" target="_blank" rel="noopener">https://support.google.com/android/answer/9431959?hl=pt-BR</a>.</li>
+            <li>GOOGLE. <em>Gerenciar permissões de localização para apps</em>. Ajuda do Android. Disponível em: <a href="https://support.google.com/android/answer/6179507?hl=pt-BR" target="_blank" rel="noopener">https://support.google.com/android/answer/6179507?hl=pt-BR</a>.</li>
+            <li>APPLE. <em>Controle o acesso a informações em apps no iPhone</em>. Manual do Usuário do iPhone. Disponível em: <a href="https://support.apple.com/pt-br/guide/iphone/iph251e92810/ios" target="_blank" rel="noopener">https://support.apple.com/pt-br/guide/iphone/iph251e92810/ios</a>.</li>
+            <li>APPLE. <em>Sobre a privacidade e os Serviços de Localização no iOS, iPadOS e watchOS</em>. Suporte da Apple. Disponível em: <a href="https://support.apple.com/pt-br/102515" target="_blank" rel="noopener">https://support.apple.com/pt-br/102515</a>.</li>
+            <li>APPLE. <em>Gerenciar os metadados de localização no app Fotos</em>. Guia de Segurança Pessoal. Disponível em: <a href="https://support.apple.com/pt-br/guide/personal-safety/ips0d7a5df82/web" target="_blank" rel="noopener">https://support.apple.com/pt-br/guide/personal-safety/ips0d7a5df82/web</a>.</li>
+          </ul>
+        </div>
+
+        <div class="card source-group reveal">
+          <h3>Contas, navegação e anúncios</h3>
+          <span class="used">Usado em: Por que isso importa · dicas 06 e 08 · Ferramentas úteis</span>
+          <ul class="refs">
+            <li>GOOGLE. <em>Ativar a verificação em duas etapas</em>. Ajuda da Conta do Google. Disponível em: <a href="https://support.google.com/accounts/answer/185839?hl=pt-BR" target="_blank" rel="noopener">https://support.google.com/accounts/answer/185839?hl=pt-BR</a>.</li>
+            <li>WHATSAPP. <em>Sobre a confirmação em duas etapas</em>. Central de Ajuda do WhatsApp. Disponível em: <a href="https://faq.whatsapp.com/1278661612895630/?locale=pt_BR" target="_blank" rel="noopener">https://faq.whatsapp.com/1278661612895630/?locale=pt_BR</a>.</li>
+            <li>META. <em>Securing your Meta Account with two-factor authentication</em>. Central de Ajuda do Instagram. Disponível em: <a href="https://help.instagram.com/566810106808145" target="_blank" rel="noopener">https://help.instagram.com/566810106808145</a>.</li>
+            <li>GOOGLE. <em>Pesquisar no modo de navegação anônima</em>. Ajuda do Google Chrome. Disponível em: <a href="https://support.google.com/chrome/answer/95464?hl=pt-BR" target="_blank" rel="noopener">https://support.google.com/chrome/answer/95464?hl=pt-BR</a>.</li>
+            <li>GOOGLE. <em>Checkup de privacidade</em>. Disponível em: <a href="https://myaccount.google.com/privacycheckup" target="_blank" rel="noopener">https://myaccount.google.com/privacycheckup</a>.</li>
+            <li>GOOGLE. <em>Minha Central de Anúncios</em>. Disponível em: <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">https://myadcenter.google.com/</a>.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
